@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize form validation
+function initializeFormValidation() {
     // Form and feedback elements selection
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
@@ -10,56 +11,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Form submission event listener
-    form.addEventListener('submit', (event) => {
-        // Prevent default form submission
-        event.preventDefault();
+    form.addEventListener('submit', handleFormSubmit);
+}
 
-        // Get and trim input values
-        const usernameInput = document.getElementById('username');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
+// Handle form submission
+function handleFormSubmit(event) {
+    // Prevent default form submission
+    event.preventDefault();
 
-        // Check if all input elements exist
-        if (!usernameInput || !emailInput || !passwordInput) {
-            console.error('Required input elements not found');
-            return;
-        }
+    // Get and trim input values
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-        const username = usernameInput.value.trim();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
+    // Check if all input elements exist
+    if (!usernameInput || !emailInput || !passwordInput) {
+        console.error('Required input elements not found');
+        return;
+    }
 
-        // Initialize validation variables
-        let isValid = true;
-        const messages = [];
+    const username = usernameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-        // Username validation
-        if (username.length < 3) {
-            isValid = false;
-            messages.push('Username must be at least 3 characters long');
-        }
+    // Initialize validation variables
+    let isValid = true;
+    const messages = [];
 
-        // Email validation
-        if (!email.includes('@') || !email.includes('.')) {
-            isValid = false;
-            messages.push('Please enter a valid email address');
-        }
+    // Username validation
+    if (username.length < 3) {
+        isValid = false;
+        messages.push('Username must be at least 3 characters long');
+    }
 
-        // Password validation
-        if (password.length < 8) {
-            isValid = false;
-            messages.push('Password must be at least 8 characters long');
-        }
+    // Email validation
+    if (!email.includes('@') || !email.includes('.')) {
+        isValid = false;
+        messages.push('Please enter a valid email address');
+    }
 
-        // Display feedback
-        feedbackDiv.style.display = 'block';
-        
-        if (isValid) {
-            feedbackDiv.textContent = 'Registration successful!';
-            feedbackDiv.style.color = '#28a745';
-        } else {
-            feedbackDiv.innerHTML = messages.join('<br>');
-            feedbackDiv.style.color = '#dc3545';
-        }
-    });
-});
+    // Password validation
+    if (password.length < 8) {
+        isValid = false;
+        messages.push('Password must be at least 8 characters long');
+    }
+
+    // Display feedback
+    const feedbackDiv = document.getElementById('form-feedback');
+    feedbackDiv.style.display = 'block';
+    
+    if (isValid) {
+        feedbackDiv.textContent = 'Registration successful!';
+        feedbackDiv.style.color = '#28a745';
+    } else {
+        feedbackDiv.innerHTML = messages.join('<br>');
+        feedbackDiv.style.color = '#dc3545';
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeFormValidation);
