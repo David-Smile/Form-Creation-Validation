@@ -3,15 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
+    // Check if required elements exist
+    if (!form || !feedbackDiv) {
+        console.error('Required form elements not found');
+        return;
+    }
+
     // Form submission event listener
     form.addEventListener('submit', (event) => {
         // Prevent default form submission
         event.preventDefault();
 
         // Get and trim input values
-        const username = document.getElementById('username').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        // Check if all input elements exist
+        if (!usernameInput || !emailInput || !passwordInput) {
+            console.error('Required input elements not found');
+            return;
+        }
+
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
         // Initialize validation variables
         let isValid = true;
