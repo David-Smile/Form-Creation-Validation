@@ -67,3 +67,26 @@ Form-Creation-Validation/
 - Implement real-time validation as user types
 - Add custom validation rules
 - Support for additional input types
+
+## Data Fetching and Display
+
+This project also includes functionality to fetch user data from a public API and display it as a list on a separate webpage.
+
+### Implementation Details
+
+- Asynchronously fetches user data from `https://jsonplaceholder.typicode.com/users`.
+- Displays user names in an unordered list (`<ul>`).
+- Includes error handling to gracefully manage API call failures.
+- Ensures data fetching occurs after the DOM is fully loaded.
+
+### Files Involved
+
+- `fetch-data.html`: HTML structure for displaying the user list.
+- `fetch-data.css`: Styling for the user list page.
+- `fetch-data.js`: JavaScript logic for fetching and displaying data.
+
+## Usage (Data Fetching)
+
+1. Open `fetch-data.html` in a web browser.
+2. The script will automatically fetch and display the user list.
+3. Observe error messages if data fetching fails.
